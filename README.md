@@ -1,19 +1,22 @@
 
 * [http://kray.jp/blog/rails3-html5-canvas/](http://kray.jp/blog/rails3-html5-canvas/) rails3 + html5 canvasでお絵かき投稿サイトを作ろう！ (2011年11月14日)
  をなぞって作成してみた。  
- 
-    $ rvm list
-    ...
-	  =* ruby-1.9.3-p429 [ i386 ]
-	...
-	$ rfm gemset list
-    ...
-	   => rails32
-	...
-    
-    $ rails new canvas
-	$ cd canvas
-	$ rails g controller pictures
+
+[![スクリーンショット]](https://raw.github.com/katoy/rails-canvas/master/misc/scrennshts/screen-001.png)
+
+
+    $ rvm list  
+    ...  
+      =* ruby-1.9.3-p429 [ i386 ]  
+    ...  
+    $ rfm gemset list  
+    ...  
+       => rails32  
+    ...  
+      
+    $ rails new canvas  
+    $ cd canvas  
+    $ rails g controller pictures  
 
 
 上のような環境下で rails アプリを新規作成した後に次のような操作をしていく。  
