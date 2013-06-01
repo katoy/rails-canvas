@@ -2,7 +2,7 @@
 * [http://kray.jp/blog/rails3-html5-canvas/](http://kray.jp/blog/rails3-html5-canvas/) rails3 + html5 canvasでお絵かき投稿サイトを作ろう！ (2011年11月14日)
  をなぞって作成してみた。  
 
-[![スクリーンショット]](https://raw.github.com/katoy/rails-canvas/master/misc/scrennshts/screen-001.png)
+[![スクリーンショット]](https://raw.github.com/katoy/rails-canvas/master/misc/scrennshts/screen-002.png)
 
 
     $ rvm list  
@@ -21,7 +21,7 @@
 
 上のような環境下で rails アプリを新規作成した後に次のような操作をしていく。  
 （投稿サイトを作ろう！ のページを参照）  
- (画面レイアウト, css ｎついては http://ruby.railstutorial.org/chapters/filling-in-the-layout#sec-structure を参照)  
+ (画面レイアウト, css については http://ruby.railstutorial.org/chapters/filling-in-the-layout#sec-structure を参照)  
  
 次のファイルを削除
 - README.rd  
