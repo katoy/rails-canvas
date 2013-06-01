@@ -122,6 +122,7 @@ $ ->
       v = $(@).val()
       myCanvas.setLineWidth(v)
       $("#pen").css("height", v)
+      $("#pen").css("margin-top", 90 - v)
       $("#show-pen-width").text(myCanvas.getLineWidth())
 
     # 線の色

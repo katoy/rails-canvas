@@ -18,18 +18,34 @@ canvas#draw-area {
 }
 
 #preview-pen {
-  width:  60px;
-  height: 60px;
+  width:  100px;
+  height: 100px;
   background-color: white;
   border: solid 1px black;
   float: left;
 }
 #pen {
-  width: 30px;
+  width: 70px;
   height: 10px;
   background-color: black;
-  margin-top: 10px;  
-  margin-left: 15px;  
+  margin-left: 15px;
+  margin-top: 80px;
+}
+
+#pen-width-slider {
+  -webkit-appearance: slider-vertical;
+  height: 80px;
+  width:  20px;
+  margin: 10px 0 10px 0;
+}
+
+#show-pen-width {
+}
+
+#color-choice {
+  margin-top: 10px;
+  width:  60px;
+  height: 60px;
 }
 
 .controll-button {
