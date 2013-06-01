@@ -9,8 +9,8 @@ $ ->
       @lineWidth = 10
       @prevPos = {x:0, y:0}
       @mouse_down = false
-      @historyData = []
-      @addHistory()
+      @historyData = [@ctx.getImageData(0, 0, @canvas.width, @canvas.height)]
+      @historyIdx = @historyData.length - 1
       @color = '#000000'
 
     setMouseState:  (flag) ->
@@ -24,7 +24,7 @@ $ ->
     getColor: -> @color
 
     addHistory: ->
-      @historyData.slice(@historyIdx + 1)
+      @historyData = @historyData.slice(0, @historyIdx + 1)
       @historyData.push @ctx.getImageData(0, 0, @canvas.width, @canvas.height)
       @historyIdx = @historyData.length - 1
 
@@ -51,6 +51,7 @@ $ ->
     reload: (image) ->
       @ctx.clearRect(0, 0, @canvas.width, @canvas.height)
       @ctx.drawImage(image, 0, 0)
+      @addHistory()
 
     mousedown: (e) ->
       @mouse_down = true
@@ -85,7 +86,7 @@ $ ->
       @ctx.closePath()
 
   listPictures = (myCanvas) ->
-      $.get '/pictures/list', (result)->
+      $.get '/pictures/list.txt', (result)->
         # console.log result
         ids = result.split(',')
         pictures = $("#pictures")

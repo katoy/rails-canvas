@@ -2,7 +2,7 @@ Canvas::Application.routes.draw do
 
   root :to => 'pictures#new'
 
-  resources :pictures, only: [:index, :create, :index]
+  resources :pictures, only: [:create]
 
   match "pictures/list", :controller => "pictures", :action => "list"
 

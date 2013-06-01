@@ -35,6 +35,14 @@ class PicturesController < ApplicationController
     Picture.all.reverse.each do |picture|
       ids << picture.id
     end
-    render :text => ids.join(',')
+    # render :text => ids.join(',')
+
+    @response = ids.join(',')
+    respond_to do |format|
+      format.html # .html.erb
+      format.xml   { render :xml => ids }
+      format.json  { render :json => ids }
+      format.text  { render :text => ids.join(',') }
+    end
   end
 end
