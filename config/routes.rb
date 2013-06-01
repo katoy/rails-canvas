@@ -2,7 +2,13 @@ Canvas::Application.routes.draw do
 
   root :to => 'pictures#new'
 
-  resource :pictures
+  resources :pictures, only: [:index, :create, :index]
+
+  match "pictures/list", :controller => "pictures", :action => "list"
+
+  #resources :pictures do
+  #  get :list, :on => :collection
+  #end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

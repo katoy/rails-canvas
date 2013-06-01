@@ -11,6 +11,7 @@ $ ->
       @mouse_down = false
       @historyData = []
       @addHistory()
+      @color = '#000000'
 
     setMouseState:  (flag) ->
       @addHistory() if @mouse_down is true and flag is false
@@ -45,6 +46,11 @@ $ ->
     save: ->
       url = @canvas.toDataURL()
       $.post '/pictures', {data: url}
+      null
+
+    reload: (image) ->
+      @ctx.clearRect(0, 0, @canvas.width, @canvas.height)
+      @ctx.drawImage(image, 0, 0)
 
     mousedown: (e) ->
       @mouse_down = true
@@ -78,51 +84,61 @@ $ ->
       @ctx.stroke()
       @ctx.closePath()
 
+  listPictures = (myCanvas) ->
+      $.get '/pictures/list', (result)->
+        # console.log result
+        ids = result.split(',')
+        pictures = $("#pictures")
+        pictures.empty()
+        ids.forEach (id, i)->
+          if parseInt(id, 10) > 0
+            pictures.append("<img src=\"/images/#{id}.png\" class=\"pict_thumbnail\" />")
+        thumb_pics = $("#pictures .pict_thumbnail")
+        thumb_pics.click ->
+          image = new Image()
+          image.src = $(@).attr('src')
+          image.onload = ->
+            myCanvas.reload(image)
+        thumb_pics.mouseenter ->
+          $(@).addClass('pict_thumbnail-over')
+        thumb_pics.mouseout ->
+          $(@).removeClass('pict_thumbnail-over')
+        null
+
+  # ====================================
   canvas = $('#draw-area')[0]
-  myCanvas = new MyCanvas(canvas)
+  if canvas
+    myCanvas = new MyCanvas(canvas)
 
-  $(canvas).mousedown (e) -> myCanvas.mousedown(e)
-  $(canvas).mousemove (e) -> myCanvas.mousemove(e)
-  $(canvas).mouseup   (e) -> myCanvas.setMouseState(false)
-  $(canvas).mouseout  (e) -> myCanvas.setMouseState(false)
+    $(canvas).mousedown (e) -> myCanvas.mousedown(e)
+    $(canvas).mousemove (e) -> myCanvas.mousemove(e)
+    $(canvas).mouseup   (e) -> myCanvas.setMouseState(false)
+    $(canvas).mouseout  (e) -> myCanvas.setMouseState(false)
 
-  # 線の太さ
-  $("#show-pen-width").text(myCanvas.getLineWidth())
-  $("#pen-width-slider").change ->
-    v = $(@).val()
-    myCanvas.setLineWidth(v)
+    # 線の太さ
     $("#show-pen-width").text(myCanvas.getLineWidth())
+    $("#pen-width-slider").change ->
+      v = $(@).val()
+      myCanvas.setLineWidth(v)
+      $("#pen").css("height", v)
+      $("#show-pen-width").text(myCanvas.getLineWidth())
 
-  # 線の色
-  red_slider = $("#pen-color-red-slider")
-  green_slider = $("#pen-color-green-slider")
-  blue_slider = $("#pen-color-blue-slider")
-  alpha_slider = $("#pen-color-alpha-slider")
-  preview_color = $("#preview-color")
+    # 線の色
+    $("#color-choice").change ->
+      v = $(@).val()
+      myCanvas.setColor(v)
+      $("#pen").css("background-color", v)
 
-  setColor = ->
-    color = "rgba(#{red_slider.val()},#{green_slider.val()},#{blue_slider.val()},#{alpha_slider.val() / 100})"
-    myCanvas.setColor(color)
-    preview_color.css('background-color', color)
+    # 消去
+    $("#clear-button").click -> myCanvas.clear()
+    # undo
+    $("#undo-button").click -> myCanvas.showHistory(-1)
+    # undo
+    $("#redo-button").click -> myCanvas.showHistory(1)
+    # 保存
+    $("#save-button").click ->
+      myCanvas.save()
+      listPictures(myCanvas)
 
-  red_slider.change ->
-    setColor()
-    $("#show-pen-red").text($(@).val())
-  green_slider.change ->
-    setColor()
-    $("#show-pen-green").text($(@).val())
-  blue_slider.change ->
-    setColor()
-    $("#show-pen-blue").text($(@).val())
-  alpha_slider.change ->
-    setColor()
-    $("#show-pen-alpha").text(($(@).val() / 100).toFixed(2))
-
-  # 消去
-  $("#clear-button").click -> myCanvas.clear()
-  # undo
-  $("#undo-button").click -> myCanvas.showHistory(-1)
-  # undo
-  $("#redo-button").click -> myCanvas.showHistory(1)
-  # 保存
-  # $("#save-button").click -> myCanvas.save()
+    # 画像一覧
+    listPictures(myCanvas)

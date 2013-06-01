@@ -8,15 +8,28 @@ canvas#draw-area {
 }
 
 .panels {
-  margin-top: 10px;
+  margin-bottom: 10px;
+  float: left;
 }
 
-#preview-color {
-  width: 30px;
-  height: 30px;
-  background-color: rgb(0, 0, 0);
-  float: left;
+.panel {
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+#preview-pen {
+  width:  60px;
+  height: 60px;
+  background-color: white;
   border: solid 1px black;
+  float: left;
+}
+#pen {
+  width: 30px;
+  height: 10px;
+  background-color: black;
+  margin-top: 10px;  
+  margin-left: 15px;  
 }
 
 .controll-button {
@@ -32,6 +45,17 @@ canvas#draw-area {
   clear: both;
 }
 
+.pict_thumbnail{
+  width:  100px;
+  height: 100px;
+  border: solid 2px #dddddd;
+  margin: 10px 10px 10px 0;
+  cursor: pointer;
+}
+.pict_thumbnail-over{
+  border: solid 2px #333333;
+}
+
 .red {
   color: red;
 }
@@ -44,4 +68,3 @@ canvas#draw-area {
 .alpha {
   color: black;
 }
-
