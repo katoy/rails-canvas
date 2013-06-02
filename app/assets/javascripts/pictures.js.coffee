@@ -41,7 +41,6 @@ $ ->
     clear: ->
       @ctx.clearRect(0, 0, @canvas.width, @canvas.height)
       @addHistory()
-      null
 
     save: ->
       dataURL = @canvas.toDataURL()
@@ -92,29 +91,85 @@ $ ->
       @ctx.stroke()
       @ctx.closePath()
 
+    # 画像が読み込まれていれば true を返す。読み込まれていなければアラートを表示し false を返す
+    checkImage: (img) ->
+      if (img.width > 0) is false
+        alert "画像がありません。"
+        return false
+      true
+  
+    # 適切な画像タイプならば true。対応していないタイプならばアラートを表示して false を返す
+    checkFileType: (text) ->    
+      # ファイルタイプの確認
+      if text.match(/^image\/(png|jpeg|gif)$/) is null
+        alert "対応していないファイル形式です。\nファイルはPNG, JPEG, GIFに対応しています。"
+        return false
+      true
+
+    loadImg: (width, height) ->
+      _mycanvas = this
+      ->
+        try
+          width = width || @width;
+          height = height || @height;  
+          _mycanvas.reload(@)
+          $(@).remove()
+        catch e
+          alert "画像を開けませんでした。"
+
+    # 画像読込ハンドラ
+    readFile: (reader) ->
+      =>
+        # img へオブジェクトを読み込む
+        this.img = $("<img>").get(0)
+        this.img.onload = @loadImg()
+        this.img.setAttribute "src", reader.result
+
+    loadFile: (file) ->
+      # ファイルタイプの確認
+      return false  if @checkFileType(file.type) is false
+      # canvasに描画
+      reader = new FileReader()
+      reader.onload = @readFile(reader)
+      reader.readAsDataURL file
+
+    ondrop: (event) ->  
+      if event.dataTransfer.files.length is 0
+        alert "画像を開けませんでした。"
+        return false
+      file = event.dataTransfer.files[0]  # ドロップされたファイル情報
+      # ファイルタイプの確認
+      return false  if @checkFileType(file.type) is false
+      # canvas への描画
+      reader = new FileReader()
+      reader.onload = @readFile(reader)
+      reader.readAsDataURL file
+      # バブリング・デフォルト処理停止
+      event.stopPropagation()
+      event.preventDefault()
+
+  # ====================================
+  # 保存した画像の一覧を表示
   listPictures = (myCanvas) ->
       $.get '/pictures/list.txt', (result)->
         # console.log result
         ids = result.split(',')
         pictures = $("#pictures")
         pictures.empty()
-        ids.forEach (id, i)->
-          if parseInt(id, 10) > 0
-            pictures.append("<img src=\"/images/#{id}.png\" class=\"pict_thumbnail\" />")
+        ids.forEach (id, i) ->
+          pictures.append("<img src=\"/images/#{id}.png\" class=\"pict_thumbnail\" />") if parseInt(id, 10) > 0
+
         thumb_pics = $("#pictures .pict_thumbnail")
         thumb_pics.click ->
           image = new Image()
           image.src = $(@).attr('src')
-          image.onload = ->
-            myCanvas.reload(image)
-        thumb_pics.mouseenter ->
-          $(@).addClass('pict_thumbnail-over')
-        thumb_pics.mouseout ->
-          $(@).removeClass('pict_thumbnail-over')
+          image.onload = -> myCanvas.reload(image)
+  
+        thumb_pics.mouseenter -> $(@).addClass('pict_thumbnail-over')
+        thumb_pics.mouseout   -> $(@).removeClass('pict_thumbnail-over')
         null
 
   # ====================================
-  img = null
   canvas = $('#draw-area')[0]
 
   if canvas
@@ -144,106 +199,22 @@ $ ->
     $("#clear-button").click -> myCanvas.clear()
     # undo
     $("#undo-button").click -> myCanvas.showHistory(-1)
-    # undo
+    # redo
     $("#redo-button").click -> myCanvas.showHistory(1)
     # 保存
     $("#save-button").click ->
       myCanvas.save()
       listPictures(myCanvas)
-    $("#download-button").click ->
-      myCanvas.download()
+    # ダウンロード
+    $("#download-button").click -> myCanvas.download()
 
-    # 画像一覧
-    listPictures(myCanvas)
-
-    # エラー表示
-    alert = (text) -> window.alert text
-  
-    # 画像が読み込まれていれば true を返す。読み込まれていなければアラートを表示し false を返す
-    checkImage = (img) ->
-      if (img.width > 0) is false
-        alert "画像がありません。"
-        return false
-      true
-  
-    # 適切な画像タイプならば true。対応していないタイプならばアラートを表示して false を返す
-    checkFileType = (text) ->    
-      # ファイルタイプの確認
-      if text.match(/^image\/(png|jpeg|gif)$/) is null
-        alert "対応していないファイル形式です。\nファイルはPNG, JPEG, GIFに対応しています。"
-        return false
-      true
-
-    #
-    # 画像ファイル読み込み・表示
-    #       
-    # img 要素から画像データを
-    loadImg = (width, height) ->
-      ->
-        try
-          width = width || @width;
-          height = height || @height;  
-          myCanvas.reload(this)
-          $(this).remove()
-        catch e
-          alert "画像を開けませんでした。"
-  
-    # 画像読込ハンドラ
-    readFile = (reader) ->
-      ->      
-        # img へオブジェクトを読み込む
-        img = $("<img>").get(0)
-        img.onload = loadImg()
-        img.setAttribute "src", reader.result
-  
-    # 縦幅の固定値が入力
-    validate = (event) ->    
-      # 未入力はなにもしない
-      return false  if $(this).val() is ""    
-      # キャスト(キャストできないときはエラーではなく NaN が返る)
-      height = parseInt($(this).val(), 10)    
-      # 0 より大きい数字以外はアラート
-      if (height > 0) is false
-        alert "0 より大きい数字を入力してください。"
-        return false
-    
-      # DOM要素の style プロパティでサイズ指定。!important を除いて最優先で提要。
-      # $('#rectangle').css() ではうまくいかない
-      $("#rectangle").get(0).style.height = $(this).val() + "px"    
-      # #rectangle要素のresizeイベントを発生させる
-      $("#rectangle").trigger "resize"
-      # バブリング・デフォルト停止
-      event.stopPropagation()
-      event.preventDefault()
+    listPictures(myCanvas)  # 保存した画像の一覧を表示
 
     # 参照ボタンで読込処理
-    $("#upload").change ->
-      # 選択したファイル情報
-      file = @files[0]
-      # ファイルタイプの確認
-      return false  if checkFileType(file.type) is false
-      # canvasに描画
-      reader = new FileReader()
-      reader.onload = readFile(reader)
-      reader.readAsDataURL file
+    $("#upload").change ->　myCanvas.loadFile(@files[0])
 
-    # ドラッグアンドドロップで読込
-    $("#view").get(0).ondragover = -> false
+    # ドラッグアンドドロップで読込む
+    canvas.ondragover = -> false
+    canvas.ondrop = (event) -> myCanvas.ondrop(event)
 
-    # bind('ondrop', function() {});はうまく動かなかった(2012.11.07)
-    $("#view").get(0).ondrop = (event) ->
-      if event.dataTransfer.files.length is 0
-        alert "画像を開けませんでした。"
-        return false
-      # ドロップされたファイル情報
-      file = event.dataTransfer.files[0]
-      # ファイルタイプの確認
-      return false  if checkFileType(file.type) is false
-      # canvasへの描画
-      reader = new FileReader()
-      reader.onload = readFile(reader)
-      reader.readAsDataURL file
-      # バブリング・デフォルト処理停止
-      event.stopPropagation()
-      event.preventDefault()
-
+    null
