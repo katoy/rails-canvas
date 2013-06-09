@@ -1,0 +1,15 @@
+ja:
+  helpers:
+    submit:
+      create: "登録する"
+      update: "更新する"
+      submit: "保存する"
+    label:
+      user:
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: パスワード（再入力）
+        remember_me: 次回からパスワード入力を省く
+  title:
+    new: '新規投稿'
+

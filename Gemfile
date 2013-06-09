@@ -7,6 +7,7 @@ gem 'bootstrap-sass'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'devise'
 
 group :development, :test do
   gem 'pry'
