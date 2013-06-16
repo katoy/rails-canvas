@@ -1,4 +1,4 @@
-Canvas::Application.configure do
+Myinfo::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
@@ -14,7 +14,7 @@ Canvas::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -34,4 +34,22 @@ Canvas::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  config.action_mailer.default_url_options = { :host => PRIVATE_DATA['url_host'] }
+  config.action_mailer.perform_deliveries = true
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => PRIVATE_DATA['mailer_address'],
+    :port                 => PRIVATE_DATA['mailer_port'],
+    :domain               => PRIVATE_DATA['mailer_domain'],
+    :user_name            => PRIVATE_DATA['mailer_user_name'],
+    :password             => PRIVATE_DATA['mailer_password'],
+    :authentication       => "plain",
+    :enable_starttls_auto => true
+  }
+
+  # Google Analytics using the google-analytics-rails gem
+  GA.tracker = PRIVATE_DATA['ga_tracker']
+  
 end

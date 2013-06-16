@@ -1,4 +1,4 @@
-Canvas::Application.configure do
+Myinfo::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests
@@ -15,13 +15,12 @@ Canvas::Application.configure do
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  # config.assets.compile = false
-  config.assets.compile = true
+  config.assets.compile = false
 
   # Generate digests for assets URLs
   config.assets.digest = true
 
-  # Defaults to nil and saved in location specified by config.assets.prefix
+  # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
 
   # Specifies the header that your server uses for sending files
@@ -32,7 +31,7 @@ Canvas::Application.configure do
   # config.force_ssl = true
 
   # See everything in the log (default is :info)
-  # config.log_level = :debug
+  config.log_level = :debug
 
   # Prepend all log lines with the following tags
   # config.log_tags = [ :subdomain, :uuid ]
@@ -65,4 +64,22 @@ Canvas::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+
+  config.action_mailer.default_url_options = { :host => PRIVATE_DATA['url_host'] }
+  config.action_mailer.perform_deliveries = true
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => PRIVATE_DATA['mailer_address'],
+    :port                 => PRIVATE_DATA['mailer_port'],
+    :domain               => PRIVATE_DATA['mailer_domain'],
+    :user_name            => PRIVATE_DATA['mailer_user_name'],
+    :password             => PRIVATE_DATA['mailer_password'],
+    :authentication       => "plain",
+    :enable_starttls_auto => true
+  }
+
+  # Google Analytics using the google-analytics-rails gem
+  GA.tracker = PRIVATE_DATA['ga_tracker']
+
 end

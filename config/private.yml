@@ -1,0 +1,20 @@
+# Not included in git repo - place private site-specific info here
+defaults: &defaults
+    url_host: "dev.example.com"
+    mailer_address: "smtpout.secureserver.net" # for example, this is godaddy.com
+    mailer_port: 80
+    mailer_domain: "example.com"
+    mailer_user_name: "myinfo@example.com"
+    mailer_password: "123123"
+
+development:
+    <<: *defaults
+    # add stuff here to override defaults.
+
+test:
+    <<: *defaults
+
+production:
+    <<: *defaults
+    # add stuff here to override defaults.
+    url_host: "www.example.com"

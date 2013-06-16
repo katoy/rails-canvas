@@ -72,8 +72,9 @@ $ ->
       @prevPos = {x:curPos.x, y:curPos.y}
 
     getPointPosition: (e) ->
-      x: e.pageX - canvas.offsetLeft
-      y: e.pageY - canvas.offsetTop
+      rect = canvas.getBoundingClientRect()
+      x: e.pageX - rect.left;
+      y: e.pageY - rect.top;
 
     putPoint: (pos, width = @lineWidth, color = @color) ->
       @ctx.beginPath()

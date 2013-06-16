@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Canvas::Application.load_tasks
+Myinfo::Application.load_tasks

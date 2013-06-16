@@ -3,9 +3,11 @@ ja:
     attributes:
       user:
         email: 'メールアドレス'
-        password:  'パスワード'
-        password_confirmation:  'パスワード(再入力)'
-        remember_me:  '次回からパスワードを省く'
+        username: 'ユーザー名'
+        current_password: '現在のパスワード'
+        password: 'パスワード'
+        password_confirmation: 'パスワード(再入力)'
+        remember_me: '次回からパスワードを省く'
       post:
         title: '題名'
         body:  '内容'

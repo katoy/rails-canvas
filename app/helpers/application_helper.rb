@@ -1,11 +1,35 @@
 module ApplicationHelper
 
-  def full_title(page_title)
-    base_title = "Rails with Canvas"
-    if page_title.empty?
-      "#{base_title}"
+  def active_tab tab
+    return "active" if params[:controller] == tab
+    return ""
+  end
+
+  def spinner_tag id
+    #Assuming spinner image is called "spinner.gif"
+    # image_tag("/images/spinner.gif", :id => id, :alt => t(:loading, :scope => 'myinfo.buttons'), :style => "display:none")
+    image_tag("spinner.gif", :id => id, :alt => t(:loading, :scope => 'myinfo.buttons'), :style => "display:none")
+    ""
+  end
+  
+  def title(page_title)
+    content_for (:title) { page_title }
+  end
+
+  def yield_or_default(section, default = "")
+    content_for?(section) ? content_for(section) : default
+  end
+  
+  def avatar_url(user)
+    if user.image_url.present?
+      user.image_url
     else
-      "#{base_title} | #{page_title}"
+      gravatar_id = Digest::MD5::hexdigest(user.email).downcase
+      "http://gravatar.com/avatar/#{gravatar_id}.png?r=g&s=25&d=mm"
     end
+  end
+
+  def icon_and_t(icon, str)
+    "<i class='#{icon} icon-white'></i> #{str}".html_safe
   end
 end

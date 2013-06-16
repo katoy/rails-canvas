@@ -1,66 +1,67 @@
+#rails3-devise-bootstrap-example
 
-* [http://kray.jp/blog/rails3-html5-canvas/](http://kray.jp/blog/rails3-html5-canvas/) rails3 + html5 canvasでお絵かき投稿サイトを作ろう！ (2011年11月14日)
- をなぞって作成してみた。  
+Example Rails 3.2 / Ruby 1.9.3 site using devise and twitter-bootstrap. Facebox is used for modal 'lightbox' devise forms.
 
-[![スクリーンショット]](https://raw.github.com/katoy/rails-canvas/master/misc/scrennshts/screen-04.png)
+Demo site: <http://r3-dev-boot.gitrepoexamples.com>
+
+###Recent Updates
+
+March 2013:
+
+- Added login via Twitter option using the omniauth-twitter gem.
+- Added user image to top nav bar. If no image from Twitter, then look for one on Gravatar
+- Email is no longer required.
+
+##Installation
+
+1. Download the zip file or clone this repository, then run:
+
+  ```
+  bundle install
+  rake db:migrate
+  ```
+
+2. Register your application with Twitter. 
+
+3. Edit the `config/database.yml` and `config/private.yml` files.
+
+  The `config/private.yml` file contains the individual information not appropriate for saving in a public repository.
+
+  These two files are listed in `.gitignore` so your local changes will not be overwritten with subsequent updates. The file `config/private.yml.todo` contains any modifications to `config/private.yml` that will need to be updated locally.
+
+4. Update what's necessary for your hosting. Such as creating the `./tmp` and `./log` directories, editing the ngnix conf, etc.
+
+###Capistrano
+
+Please read the comments in `config/deploy.rb` for how these two locally maintained files are treated with a Capistrano deployment.
+
+##Caveats:
+
+Please note:
+
+- There is a potential memory leak with bootstrap when working in the Rails development environment. The memory usage creeps up when I am editing bootstrap assets and doing iterative testing by just refreshing the browser and not restarting the app each time.
+- Since I didn't use all of the devise features, you'll want to compare the original devise controllers and the overriding inherited controllers for what's missing.
+- Assumes user has Javascript and cookies enabled.
+- Only tested in latest version of Chrome and Firefox.
 
 
-    $ rvm list  
-    ...  
-      =* ruby-1.9.3-p429 [ i386 ]  
-    ...  
-    $ rfm gemset list  
-    ...  
-       => rails32  
-    ...  
-      
-    $ rails new canvas  
-    $ cd canvas  
-    $ rails g controller pictures  
+##Author
 
+Joan Hughes
 
-上のような環境下で rails アプリを新規作成した後に次のような操作をしていく。  
-（投稿サイトを作ろう！ のページを参照）  
- (画面レイアウト, css については http://ruby.railstutorial.org/chapters/filling-in-the-layout#sec-structure を参照)  
- 
-次のファイルを削除
-- README.rd  
-- app/pubic/index.html  
+http://www.linkedin.com/in/jehughes
 
-次のファイルを編集。(存在していなければ作成)  
-内容は 実際の githug レポジトリー中のソースコードを参照すること  
+##License
+The MIT License (MIT)
 
-- Gemfile
-- README.md
+Copyright (c) 2013 Joan Hughes (ZoeOberon Solutions)
 
-- config/routes.rb
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-- app/assets/strylesheet/pictures.css.scss
-- app/assets/strylesheet/custom.css.scss
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-- app/assets/javascripts/pictures.js.coffee
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-- app/views/layouts/_shim.html.erb
-- app/views/layouts/_header.html.erb
-- app/views/layouts/_footer.html.erb
-- app/views/layouts/application.html.erb
-
-- app/view/pictures/new.html.erb
-
-* 実装済みの機能
-
-- 描画  
-- 色、太さの変更
-- undo/redo (現状では回数制限は無し[エラー処理も無し])  
-- 画像の保存・読み込み  
-- 保存された画像の一覧表示、サムネイル表示  
-- カラー選択を <inut type="color"> で置き換えた (firefox ではダイアログ表示されなくなるが)
-
-* TODO
-
-- アルファ値も扱えるようにする
-- ページ上の各種リンクの実装
-- rspec でのテスト  
-- heroku へ deploy  
-
+![image](http://joanswork.com/images/gh_r3dboot_spot.png)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jehughes/rails3-devise-bootstrap-example/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 

@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Canvas::Application.config.secret_token = '3602584496bc5f3a6646e29b89bd65dc41ad80271ee8a83a6a7874856b46dc5d439ed7c2de1c93c10760b357cceacf3259d321c6021bccc2f6650e1b38cacaad'
+Myinfo::Application.config.secret_token = '3d8d1ad715bc7511ea0620a2ed35cbaed28ac05aa968c4c33bdb52c0e62eeaea3c097263c3b4a98ad402c1cf73aa1584058d770e40eb6a76a33258f7f5213545'
