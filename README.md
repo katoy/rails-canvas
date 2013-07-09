@@ -2,7 +2,7 @@
 * [http://kray.jp/blog/rails3-html5-canvas/](http://kray.jp/blog/rails3-html5-canvas/) rails3 + html5 canvasでお絵かき投稿サイトを作ろう！ (2011年11月14日)
  をなぞって作成してみた。  
 
-[![スクリーンショット]](https://raw.github.com/katoy/rails-canvas/master/misc/scrennshts/screen-05.png)
+[![スクリーンショット]](https://raw.github.com/katoy/rails-canvas/master/misc/screenshots/screen-05.png)
 
 
     $ rvm list  
