@@ -84,3 +84,23 @@ canvas#draw-area {
 .alpha {
   color: black;
 }
+
+.name {
+  float: left;
+  display: block;
+  font-size: 40pt;
+  height: 44pt;
+  line-height: 44pt;
+  width: 100%;
+  background-color: #aaa;
+}
+
+.navbar .nav.pull-right {
+  margin-top: -(46pt + 40px);
+}
+
+@media (max-width: 979px) {
+  .navbar .nav.pull-right {
+    margin-top: 44pt + 10px;
+  }
+}

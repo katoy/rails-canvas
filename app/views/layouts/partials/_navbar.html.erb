@@ -4,8 +4,33 @@
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
         Menu
       </a>
-      <a class="brand" href="/dashboard">SampleApp</a>
+      <div>
+	<a class="brand" href="/dashboard">SampleApp</a>
+      </div>
+      <br/>
       <div class="nav-collapse collapse">
+
+	<div class="name">NAME</div>
+
+        <ul class="nav pull-right">
+          <li>
+            <p class="navbar-text">
+              <% if user_signed_in? -%>
+              <%= link_to image_tag(avatar_url(current_user), :size => "25x25"), fb_edit_user_path, :remote => true %>
+              &nbsp;
+              <%= link_to current_user.username, fb_edit_user_path, :remote => true %>&nbsp;|&nbsp; 
+              <%= link_to t(:logout, scope: :'myinfo.menu'), destroy_user_session_path, :method=>'delete' %> 
+              <% else -%>
+              <%= link_to image_tag("sign-in-with-twitter-gray-20.png"), user_omniauth_authorize_path(:twitter) %>
+              &nbsp;&nbsp;
+              <%= link_to t(:login, scope: :'myinfo.menu'), fb_login_path, :remote => true %>&nbsp;|&nbsp;
+              <%= link_to t(:sign_up, scope: :'myinfo.menu'), fb_create_user_path, :remote => true %>
+              <% end -%>
+            </p>
+          </li>
+        </ul>      
+
+
         <ul class="nav">
 	  <!-- タブ [HOME] -->
           <li class="<%= active_tab('home') %>"><%= link_to icon_and_t("icon-home", t(:home, scope: :'myinfo.menu')), dashboard_path -%></li>
@@ -45,23 +70,6 @@
 
         </ul>
 	
-        <ul class="nav pull-right">
-          <li>
-            <p class="navbar-text">
-              <% if user_signed_in? -%>
-              <%= link_to image_tag(avatar_url(current_user), :size => "25x25"), fb_edit_user_path, :remote => true %>
-              &nbsp;
-              <%= link_to current_user.username, fb_edit_user_path, :remote => true %>&nbsp;|&nbsp; 
-              <%= link_to t(:logout, scope: :'myinfo.menu'), destroy_user_session_path, :method=>'delete' %> 
-              <% else -%>
-              <%= link_to image_tag("sign-in-with-twitter-gray-20.png"), user_omniauth_authorize_path(:twitter) %>
-              &nbsp;&nbsp;
-              <%= link_to t(:login, scope: :'myinfo.menu'), fb_login_path, :remote => true %>&nbsp;|&nbsp;
-              <%= link_to t(:sign_up, scope: :'myinfo.menu'), fb_create_user_path, :remote => true %>
-              <% end -%>
-            </p>
-          </li>
-        </ul>      
       </div>
     </div>
   </div>
