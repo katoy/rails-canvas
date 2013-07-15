@@ -16,11 +16,13 @@ html, body {
   }
 }
 
+$FOOTTER_HEIGHT: 40px;
+
 #wrap {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  margin: 0 auto -70px;
+  margin: 0 auto (-$FOOTTER_HEIGHT);
 }
 
 #push {
@@ -28,7 +30,7 @@ html, body {
 }
 
 #footer {
-  height: 70px;
+  height: $FOOTTER_HEIGHT;
   position: relative;
   background-color: #f5f5f5;
   text-align: center;
