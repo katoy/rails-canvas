@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+  
+  before_filter :authenticate_user!
+  
   protect_from_forgery
   helper_method :current_msg, :set_msg, :clear_msg, :is_msg?
   

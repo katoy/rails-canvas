@@ -1,4 +1,7 @@
 class LocalDevise::SessionsController < Devise::SessionsController
+
+  skip_before_filter :authenticate_user!
+
   def create
     resource = warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failed_login")
     sign_in(resource_name, resource)   

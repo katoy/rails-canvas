@@ -1,6 +1,5 @@
 class AdminController < ApplicationController
 
-  before_filter :authenticate_user!
   before_filter do |c|
     c.send(:check_access_level, User.manager_role)
   end

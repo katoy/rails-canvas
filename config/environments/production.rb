@@ -80,6 +80,6 @@ Myinfo::Application.configure do
   }
 
   # Google Analytics using the google-analytics-rails gem
-  # GA.tracker = PRIVATE_DATA['ga_tracker']
+  GA.tracker = PRIVATE_DATA['ga_tracker']
 
 end
