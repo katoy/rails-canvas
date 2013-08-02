@@ -22,8 +22,22 @@ group :assets do
 end
 
 group :development do
-  gem "better_errors"
-  gem "binding_of_caller"
+  # WEBrick でなく thin を使う
+  gem 'thin'
+
+  # エラー画面をわかりやすく整形してくれる
+  gem 'better_errors'
+  gem 'pry-rails'
+  gem 'pry-doc'
+
+  # better_errorsの画面上にirb/pry(PERL)を表示する
+  gem 'binding_of_caller'
+
+  # M + 1 問題のチェック
+  gem 'bullet', :group => :development
+
+  # perormance 計測
+  gem 'rack-mini-profiler'
 end
 
 gem "less-rails"
@@ -45,6 +59,13 @@ gem 'capistrano'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+group :test do
+  gem 'simplecov', :require => false
+  gem 'simplecov-rcov', :require => false
+end
+gem 'coveralls', require: false
+
 
 gem 'devise'
 gem 'simple_form'

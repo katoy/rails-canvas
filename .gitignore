@@ -22,5 +22,6 @@ doc/
 .DS_Store
 bundler_stubs/
 bin/
+/coverage/
 
 /nbproject/private/

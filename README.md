@@ -1,4 +1,8 @@
 
+[![Build Status](https://travis-ci.org/katoy/rails-canvas.png?branch=master)](https://travis-ci.org/katoy/rails-canvas)
+[![Dependency Status](https://gemnasium.com/katoy/rails-canvas.png)](https://gemnasium.com/katoy/rails-canvas)
+[![Coverage Status](https://coveralls.io/repos/katoy/rails-canvas/badge.png)](https://coveralls.io/r/katoy/rails-canvas)
+
 * [http://kray.jp/blog/rails3-html5-canvas/](http://kray.jp/blog/rails3-html5-canvas/) rails3 + html5 canvasでお絵かき投稿サイトを作ろう！ (2011年11月14日)
  をなぞって作成してみた。  
 

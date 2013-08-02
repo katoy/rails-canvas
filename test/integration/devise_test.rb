@@ -10,7 +10,7 @@ class DeviseTest < ActionDispatch::IntegrationTest
   test 'home should be accessible without sign in' do   
     get '/'
     assert_response :success
-    assert_select 'h3', "Welcome! Hello world!"
+    assert_select 'title', "home:&nbsp;SampleApp"
   end
   
   test 'valid user login' do
