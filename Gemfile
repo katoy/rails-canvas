@@ -60,6 +60,9 @@ gem 'capistrano'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+# for debug, run $ rails s --debugger
+gem 'debugger'
+
 group :test do
   gem 'simplecov', :require => false
   gem 'simplecov-rcov', :require => false

@@ -7,6 +7,7 @@
   <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :id => "login",:class => "form-horizontal", :data => { remote: true, spinner: "#login_spinner"}}) do |f| %>
     <div id="login_errors">
     </div>
+    <%= f.hidden_field :mask, value: "admin" %>
     <%= f.input :username, :input_html => { :autocomplete => :off} %>
     <%= f.input :password %>
     <%= link_to t(:forgot_password, scope: :'myinfo.buttons'), fb_reset_password_path, :remote => true, :class => 'form_align_with_input' %>

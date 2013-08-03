@@ -6,7 +6,14 @@ class LocalDevise::SessionsController < Devise::SessionsController
     resource = warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failed_login")
     sign_in(resource_name, resource)   
     set_msg t(:signed_in, :scope => 'devise.sessions')
+    
+    #debugger
+    # role 専用の login コントロールを作ることも可能
+    #if resource.username == params[:role]
+    #  log_sign_in
+    #end
     log_sign_in
+
     respond_to do |format|
       format.js
       # and now keep placeholder integration test happy

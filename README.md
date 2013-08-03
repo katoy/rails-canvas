@@ -67,4 +67,9 @@
 - rspec でのテスト  
 - heroku へ deploy  
 
+* その他
+
+- http://www.tamurasouko.com/?p=929  Rails – Deviseのコントローラをカスタマイズする方法
+- http://bgrins.github.io/spectrum/  alpha 値も扱える color picker
+
 

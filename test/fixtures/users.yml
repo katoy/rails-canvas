@@ -10,7 +10,6 @@ admin:
   updated_at: 2012-11-27 00:00:00
 
 molly:
-  id: 2
   username: molly
   email: molly@example.com
   role: manager
@@ -19,7 +18,6 @@ molly:
   updated_at: 2012-11-27 00:00:00
 
 guest:
-  id: 3
   username: guest
   email: guest@example.com
   role: guest
@@ -28,7 +26,6 @@ guest:
   updated_at: 2012-11-27 00:00:00
 
 fred:
-  id: 4
   username: fred
   email: fred@example.com
   role: user
@@ -37,7 +34,6 @@ fred:
   updated_at: 2012-11-27 00:00:00
 
 felix:
-  id: 5
   username: felix
   email: felix@example.com
   role: user
@@ -46,7 +42,6 @@ felix:
   updated_at: 2012-11-27 00:00:00
 
 suzy:
-  id: 6
   username: suzy
   email: suzy@example.com
   role: user
@@ -55,7 +50,6 @@ suzy:
   updated_at: 2012-11-27 00:00:00
 
 jane:
-  id: 7
   username: jane
   email: jane@example.com
   role: user
@@ -64,7 +58,6 @@ jane:
   updated_at: 2012-11-27 00:00:00
 
 darcy:
-  id: 8
   username: darcy
   email: darcy@example.com
   role: user
@@ -72,182 +65,14 @@ darcy:
   created_at: 2012-11-27 00:00:00
   updated_at: 2012-11-27 00:00:00
 
-user_00:
-  id: 100
-  username: user_00
-  email: user00@example.com
+<% (0 .. 19).each do |u| %>
+<%   id   = sprintf('%02d', u) %>
+<%   name = "user_#{id}" %>
+<%= "#{name}:" %>
+  username: <%= "user_#{name}" %>
+  email:    <%= "#{name}00@example.com}" %>
   role: user
   encrypted_password: $2a$10$UuFyf02kxENQ/JPk8pIV.OeONBDML9MRmIxjgRENULSvnQq7upklq
   created_at: 2012-11-27 00:00:00
   updated_at: 2012-11-27 00:00:00
-
-user_01:
-  id: 101
-  username: user_01
-  email: user01@example.com
-  role: user
-  encrypted_password: $2a$10$UuFyf02kxENQ/JPk8pIV.OeONBDML9MRmIxjgRENULSvnQq7upklq
-  created_at: 2012-11-27 00:00:00
-  updated_at: 2012-11-27 00:00:00
-
-user_02:
-  id: 102
-  username: user_02
-  email: user02@example.com
-  role: user
-  encrypted_password: $2a$10$UuFyf02kxENQ/JPk8pIV.OeONBDML9MRmIxjgRENULSvnQq7upklq
-  created_at: 2012-11-27 00:00:00
-  updated_at: 2012-11-27 00:00:00
-
-user_03:
-  id: 103
-  username: user_03
-  email: user03@example.com
-  role: user
-  encrypted_password: $2a$10$UuFyf02kxENQ/JPk8pIV.OeONBDML9MRmIxjgRENULSvnQq7upklq
-  created_at: 2012-11-27 00:00:00
-  updated_at: 2012-11-27 00:00:00
-
-user_04:
-  id: 104
-  username: user_04
-  email: user04@example.com
-  role: user
-  encrypted_password: $2a$10$UuFyf02kxENQ/JPk8pIV.OeONBDML9MRmIxjgRENULSvnQq7upklq
-  created_at: 2012-11-27 00:00:00
-  updated_at: 2012-11-27 00:00:00
-
-user_05:
-  id: 105
-  username: user_05
-  email: user05@example.com
-  role: user
-  encrypted_password: $2a$10$UuFyf02kxENQ/JPk8pIV.OeONBDML9MRmIxjgRENULSvnQq7upklq
-  created_at: 2012-11-27 00:00:00
-  updated_at: 2012-11-27 00:00:00
-
-user_06:
-  id: 106
-  username: user_06
-  email: user06@example.com
-  role: user
-  encrypted_password: $2a$10$UuFyf02kxENQ/JPk8pIV.OeONBDML9MRmIxjgRENULSvnQq7upklq
-  created_at: 2012-11-27 00:00:00
-  updated_at: 2012-11-27 00:00:00
-
-user_07:
-  id: 107
-  username: user_07
-  email: user07@example.com
-  role: user
-  encrypted_password: $2a$10$UuFyf02kxENQ/JPk8pIV.OeONBDML9MRmIxjgRENULSvnQq7upklq
-  created_at: 2012-11-27 00:00:00
-  updated_at: 2012-11-27 00:00:00
-
-user_08:
-  id: 108
-  username: user_08
-  email: user08@example.com
-  role: user
-  encrypted_password: $2a$10$UuFyf02kxENQ/JPk8pIV.OeONBDML9MRmIxjgRENULSvnQq7upklq
-  created_at: 2012-11-27 00:00:00
-  updated_at: 2012-11-27 00:00:00
-
-user_09:
-  id: 109
-  username: user_09
-  email: user09@example.com
-  role: user
-  encrypted_password: $2a$10$UuFyf02kxENQ/JPk8pIV.OeONBDML9MRmIxjgRENULSvnQq7upklq
-  created_at: 2012-11-27 00:00:00
-  updated_at: 2012-11-27 00:00:00
-
-user_10:
-  id: 110
-  username: user_10
-  email: user10@example.com
-  role: user
-  encrypted_password: $2a$10$UuFyf02kxENQ/JPk8pIV.OeONBDML9MRmIxjgRENULSvnQq7upklq
-  created_at: 2012-11-27 00:00:00
-  updated_at: 2012-11-27 00:00:00
-
-user_11:
-  id: 111
-  username: user_11
-  email: user11@example.com
-  role: user
-  encrypted_password: $2a$10$UuFyf02kxENQ/JPk8pIV.OeONBDML9MRmIxjgRENULSvnQq7upklq
-  created_at: 2012-11-27 00:00:00
-  updated_at: 2012-11-27 00:00:00
-
-user_12:
-  id: 112
-  username: user_12
-  email: user12@example.com
-  role: user
-  encrypted_password: $2a$10$UuFyf02kxENQ/JPk8pIV.OeONBDML9MRmIxjgRENULSvnQq7upklq
-  created_at: 2012-11-27 00:00:00
-  updated_at: 2012-11-27 00:00:00
-
-user_13:
-  id: 113
-  username: user_13
-  email: user13@example.com
-  role: user
-  encrypted_password: $2a$10$UuFyf02kxENQ/JPk8pIV.OeONBDML9MRmIxjgRENULSvnQq7upklq
-  created_at: 2012-11-27 00:00:00
-  updated_at: 2012-11-27 00:00:00
-
-user_14:
-  id: 114
-  username: user_14
-  email: user14@example.com
-  role: user
-  encrypted_password: $2a$10$UuFyf02kxENQ/JPk8pIV.OeONBDML9MRmIxjgRENULSvnQq7upklq
-  created_at: 2012-11-27 00:00:00
-  updated_at: 2012-11-27 00:00:00
-
-user_15:
-  id: 115
-  username: user_15
-  email: user15@example.com
-  role: user
-  encrypted_password: $2a$10$UuFyf02kxENQ/JPk8pIV.OeONBDML9MRmIxjgRENULSvnQq7upklq
-  created_at: 2012-11-27 00:00:00
-  updated_at: 2012-11-27 00:00:00
-
-user_16:
-  id: 116
-  username: user_16
-  email: user16@example.com
-  role: user
-  encrypted_password: $2a$10$UuFyf02kxENQ/JPk8pIV.OeONBDML9MRmIxjgRENULSvnQq7upklq
-  created_at: 2012-11-27 00:00:00
-  updated_at: 2012-11-27 00:00:00
-
-user_17:
-  id: 117
-  username: user_17
-  email: user17@example.com
-  role: user
-  encrypted_password: $2a$10$UuFyf02kxENQ/JPk8pIV.OeONBDML9MRmIxjgRENULSvnQq7upklq
-  created_at: 2012-11-27 00:00:00
-  updated_at: 2012-11-27 00:00:00
-
-user_18:
-  id: 118
-  username: user_18
-  email: user18@example.com
-  role: user
-  encrypted_password: $2a$10$UuFyf02kxENQ/JPk8pIV.OeONBDML9MRmIxjgRENULSvnQq7upklq
-  created_at: 2012-11-27 00:00:00
-  updated_at: 2012-11-27 00:00:00
-
-user_19:
-  id: 19
-  username: user_19
-  email: user19@example.com
-  role: user
-  encrypted_password: $2a$10$UuFyf02kxENQ/JPk8pIV.OeONBDML9MRmIxjgRENULSvnQq7upklq
-  created_at: 2012-11-27 00:00:00
-  updated_at: 2012-11-27 00:00:00
+<% end %>
