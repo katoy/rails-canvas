@@ -1,12 +1,15 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '~>3.2.14'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 # gem 'mysql2'
 gem 'sqlite3'
+
+# WEBrick でなく thin を使う
+gem 'thin'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -22,11 +25,11 @@ group :assets do
 end
 
 group :development do
-  # WEBrick でなく thin を使う
-  gem 'thin'
 
   # エラー画面をわかりやすく整形してくれる
   gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'pry'
   gem 'pry-rails'
   gem 'pry-doc'
 
@@ -66,9 +69,17 @@ gem 'debugger'
 group :test do
   gem 'simplecov', :require => false
   gem 'simplecov-rcov', :require => false
-end
-gem 'coveralls', require: false
+  gem 'coveralls', require: false
 
+  # テスト自動化用のライブラリ
+  gem 'poltergeist'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'rspec'
+  gem 'rspec-rails', '>= 0', :group => :development
+  gem "poltergeist"
+  gem 'factory_girl_rails', '~> 4.2.1'
+end
 
 gem 'devise'
 gem 'simple_form'
@@ -76,4 +87,9 @@ gem 'best_in_place'
 gem 'facebox-rails'
 gem 'google-analytics-rails'
 gem 'omniauth-twitter'
+
+gem 'i18n-missing_translations'
+gem 'rack-mini-profiler'
+
+gem 'yard', require: false
 
