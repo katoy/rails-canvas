@@ -1,3 +1,5 @@
+# coding: utf-8
+
 class User < ActiveRecord::Base
 
   # DEVISE
@@ -18,6 +20,16 @@ class User < ActiveRecord::Base
   # /DEVISE and OmniAuth
   
   validates :username, :uniqueness => true, :length => { :within => 4..12 }
+
+  # パスワードの書式に制限をつける。
+  validate  :validate_password  
+  def validate_password
+    # See http://excid3.com/blog/rails-tip-adding-password-complexity-validations-to-devise/#.UiiC9rtvuPo
+    if password.present? and not password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/)
+      errors.add :" ", "パスワードは、数字、大文字のアルファベット、小文字のアルファベットをそれぞれ少なくとも１つ含ませてください。全角文字はつかえません
+      "
+    end
+  end
   
   def self.from_omniauth(auth)
     user = where(auth.slice(:provider, :uid)).first_or_create do |new_user|
