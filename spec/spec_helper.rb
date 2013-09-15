@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'capybara'
 #require 'capybara/rails'
 require 'capybara/rspec'
@@ -41,4 +42,21 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  # See http://o.inchiki.jp/obbr/157
+  #     RspecでDeviseでログイン状態中のテストを書く
+  config.include Devise::TestHelpers, :type => :controller
+  # config.extend ControllerMacros, :type => :controller
+
+  config.include Warden::Test::Helpers
+  Warden.test_mode!
+
+  config.after :each do
+    Warden.test_reset!
+  end
+
+  def login(user)
+    login_as user, scope: :user, run_callbacks: false
+  end
+
 end

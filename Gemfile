@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 source 'https://rubygems.org'
 
 gem 'rails', '~>3.2.14'
@@ -77,8 +78,7 @@ group :test do
   gem 'database_cleaner'
   gem 'rspec'
   gem 'rspec-rails', '>= 0', :group => :development
-  gem "poltergeist"
-  gem 'factory_girl_rails', '~> 4.2.1'
+  # gem 'factory_girl_rails', '~> 4.2.1'
 end
 
 gem 'devise'
