@@ -7,3 +7,4 @@ bundler_args: "--without development"
 script:
   - RAILS_ENV=test bundle exec rake db:create db:migrate
   - RAILS_ENV=test bundle exec rake test
+  - RAILS_ENV=test bundle exec rake spec
