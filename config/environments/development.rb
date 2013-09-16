@@ -34,7 +34,7 @@ Myinfo::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-  
+
   config.action_mailer.default_url_options = { :host => PRIVATE_DATA['url_host'] }
   config.action_mailer.perform_deliveries = true
 
@@ -50,6 +50,6 @@ Myinfo::Application.configure do
   }
 
   # Google Analytics using the google-analytics-rails gem
-  GA.tracker = PRIVATE_DATA['ga_tracker']
-  
+  # GA.tracker = PRIVATE_DATA['ga_tracker']
+
 end

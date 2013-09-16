@@ -73,7 +73,12 @@ group :test do
   gem 'coveralls', require: false
 
   # テスト自動化用のライブラリ
+  gem 'konacha'
   gem 'poltergeist'
+  #gem 'capybara-webkit'
+  #gem 'headless'
+  #gem 'selenium-webdriver'
+
   gem 'capybara'
   gem 'database_cleaner'
   gem 'rspec'
@@ -85,7 +90,7 @@ gem 'devise'
 gem 'simple_form'
 gem 'best_in_place'
 gem 'facebox-rails'
-gem 'google-analytics-rails'
+# gem 'google-analytics-rails'
 gem 'omniauth-twitter'
 
 gem 'i18n-missing_translations'
