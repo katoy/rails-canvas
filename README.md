@@ -52,23 +52,21 @@
 - app/view/pictures/new.html.erb
 
 * 実装済みの機能
-
 - 描画  
 - 色、太さの変更
 - undo/redo (現状では回数制限は無し[エラー処理も無し])  
 - 画像の保存・読み込み  
 - 保存された画像の一覧表示、サムネイル表示  
 - カラー選択を <inut type="color"> で置き換えた (firefox ではダイアログ表示されなくなるが)
+- rake spec で いくつかの画面をキャプチャする。(認証が必要な画面も)
 
 * TODO
-
 - アルファ値も扱えるようにする
 - ページ上の各種リンクの実装
 - rspec でのテスト  
 - heroku へ deploy  
 
 * その他
-
 - http://www.tamurasouko.com/?p=929  Rails – Deviseのコントローラをカスタマイズする方法
 - http://bgrins.github.io/spectrum/  alpha 値も扱える color picker
 
