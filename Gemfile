@@ -29,7 +29,6 @@ group :development do
 
   # エラー画面をわかりやすく整形してくれる
   gem 'better_errors'
-  gem 'binding_of_caller'
   gem 'pry'
   gem 'pry-rails'
   gem 'pry-doc'
