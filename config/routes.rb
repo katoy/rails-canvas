@@ -25,7 +25,7 @@ Myinfo::Application.routes.draw do
   match '/facebox/fb_reset_password' => 'facebox#fb_reset_password', :as => :fb_reset_password
 
 
-  resources :pictures, only: [:create]
+  resources :pictures, only: [:create, :destroy]
   match 'pictures/list', :controller => 'pictures', :action => 'list'
   match 'pictures',      :controller => 'pictures', :action => 'new'
 

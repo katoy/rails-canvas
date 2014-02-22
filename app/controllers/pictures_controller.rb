@@ -45,4 +45,17 @@ class PicturesController < ApplicationController
       format.text  { render :text => ids.join(',') }
     end
   end
+
+  # DELETE /picture/1
+  # DELETE /picture/1.json
+  def destroy
+    @pict = Picture.find(params[:id])
+    @pict.destroy if @pict
+
+    respond_to do |format|
+      format.html { redirect_to pictures_url }
+      format.json { head :no_content }
+    end
+  end
+
 end

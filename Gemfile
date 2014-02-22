@@ -84,6 +84,7 @@ group :test do
   gem 'rspec'
   gem 'rspec-rails', '>= 0', :group => :development
   # gem 'factory_girl_rails', '~> 4.2.1'
+  gem 'metric_fu'
 end
 
 gem 'devise'
@@ -94,7 +95,6 @@ gem 'facebox-rails'
 gem 'omniauth-twitter'
 
 gem 'i18n-missing_translations'
-gem 'rack-mini-profiler'
 
 gem 'yard', require: false
 
