@@ -32,6 +32,7 @@ group :development do
   gem 'pry'
   gem 'pry-rails'
   gem 'pry-doc'
+  gem 'pry-debugger'
 
   # better_errorsの画面上にirb/pry(PERL)を表示する
   gem 'binding_of_caller'
@@ -89,6 +90,11 @@ group :test do
   gem 'rspec-rails', '>= 0', :group => :development
   # gem 'factory_girl_rails', '~> 4.2.1'
   gem 'metric_fu'
+
+  gem 'pry'
+  gem 'pry-rails'
+  gem 'pry-doc'
+  gem 'pry-debugger'
 end
 
 gem 'devise'

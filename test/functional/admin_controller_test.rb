@@ -10,7 +10,7 @@ class AdminControllerTest < ActionController::TestCase
     request.env['devise.mapping'] = Devise.mappings[:user]
     sign_in User.find_by_username('admin')
     assert :success
-    
+
     post :add_new_user, :user => {:username => "john", :email => "john@example.com"}
     assert :success
     assert_redirected_to "/admin"
@@ -26,9 +26,9 @@ class AdminControllerTest < ActionController::TestCase
     post :update_user, { :user => { :username => "maggie"}, :id => user.id}
     assert :success
     assert_redirected_to "/admin"
-    
+
     user = User.find_by_username('maggie')
-    assert :success    
+    assert :success
   end
 
   test 'delete user from admin page table' do
@@ -36,14 +36,14 @@ class AdminControllerTest < ActionController::TestCase
     request.env['devise.mapping'] = Devise.mappings[:user]
     sign_in User.find_by_username('admin')
     assert :success
-    
+
     user = User.find_by_username('suzy')
     delete :delete_user, { :id => user.id }
     assert :success
     assert_redirected_to "/admin"
-    
+
     user = User.find_by_username('suzy')
-    assert :fail    
+    assert :fail
   end
 
 end

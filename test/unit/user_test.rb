@@ -1,13 +1,13 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  
+
   test "username wrong length" do
     user = User.find_by_username("fred")
     user.username = "12"
     assert !user.save, "Username too short"
     user.username = "123123123123123123123"
-    assert !user.save, "Username too long"    
+    assert !user.save, "Username too long"
   end
 
   test "username or email not unique" do
@@ -17,7 +17,7 @@ class UserTest < ActiveSupport::TestCase
     user.email = "molly@example.com"
     assert !user.save, "Email not unique"
   end
-  
+
   # now test roles handled in user model
 
   test "guest role limits" do
@@ -39,7 +39,7 @@ class UserTest < ActiveSupport::TestCase
     assert !fred.role_access?('manager')
     assert !fred.role_access?('admin')
   end
-  
+
   test "manager role limits" do
     molly = User.find_by_username("molly")
     assert molly.role?('manager')

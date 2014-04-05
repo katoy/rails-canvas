@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
     ''
   end
 
-  def set_msg str
+  def set_msg(str)
     session[:msg] = str
   end
 
