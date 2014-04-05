@@ -1,36 +1,34 @@
 # coding: utf-8
-
 class User < ActiveRecord::Base
-
   # DEVISE
-  
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  #devise :database_authenticatable, :registerable,
+  # devise :database_authenticatable, :registerable,
   #       :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  #attr_accessible :email, :password, :password_confirmation, :remember_me
-  #attr_accessible :title, :body
+  # attr_accessible :email, :password, :password_confirmation, :remember_me
+  # attr_accessible :title, :body
 
   devise :database_authenticatable, :registerable, :rememberable, :trackable, :validatable, :recoverable, :omniauthable
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :role, :image_url
-  
+
   # /DEVISE and OmniAuth
-  
-  validates :username, :uniqueness => true, :length => { :within => 4..12 }
+
+  validates :username, uniqueness: true, length: { within: 4..12 }
 
   # パスワードの書式に制限をつける。
-  validate  :validate_password  
+  validate :validate_password
   def validate_password
     # See http://excid3.com/blog/rails-tip-adding-password-complexity-validations-to-devise/#.UiiC9rtvuPo
-    if password.present? and not password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/)
+    if password.present? && !password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/)
       errors.add :" ", "パスワードは、数字、大文字のアルファベット、小文字のアルファベットをそれぞれ少なくとも１つ含ませてください。全角文字はつかえません
       "
     end
   end
-  
+
   def self.from_omniauth(auth)
     user = where(auth.slice(:provider, :uid)).first_or_create do |new_user|
       new_user.provider = auth.provider
@@ -49,7 +47,7 @@ class User < ActiveRecord::Base
       end
     else
       super
-    end    
+    end
   end
 
   def password_required?
@@ -69,18 +67,17 @@ class User < ActiveRecord::Base
   end
 
   # handle roles
-  
   def self.user_role; "user"; end
   def self.admin_role; "admin"; end
   def self.guest_role; "guest"; end
   def self.manager_role; "manager"; end
 
   def self.role_collection
-    [['guest', 'guest'],['user','user'],['manager','manager']]
+    [['guest', 'guest'], ['user', 'user'], ['manager', 'manager']]
   end
-  
+
   def self.role_collection_with_admin
-    [['guest', 'guest'],['user','user'],['manager','manager'],['admin','admin']]
+    [['guest', 'guest'], ['user', 'user'], ['manager', 'manager'], ['admin', 'admin']]
   end
 
   def role?(role)
@@ -91,21 +88,19 @@ class User < ActiveRecord::Base
   end
 
   def valid_role?(role)
-    ['guest','user', 'manager', 'admin'].include?(role)
+    ['guest', 'user', 'manager', 'admin'].include?(role)
   end
- 
+
   def is_admin?
     self.role == 'admin'
   end
- 
+
   def role_access?(role)
-    return false if (role.nil? || self.role.nil? || !valid_role?(self.role))
+    return false if role.nil? || self.role.nil? || !valid_role?(self.role)
     return true if role == 'guest'
     return true if role == 'admin' && self.role == 'admin'
     return true if role == 'manager' && ['manager', 'admin'].include?(self.role)
     return true if role == 'user' && ['user', 'manager', 'admin'].include?(self.role)
-    return false
+    false
   end
-
-
 end

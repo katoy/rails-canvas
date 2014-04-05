@@ -1,25 +1,25 @@
+# coding: utf-8
 class PicturesController < ApplicationController
-
   def new
   end
 
   def create
     path = 'public/images/'
     picture = Picture.create
-    File.open("#{Rails.root}/#{path}/#{picture.id}.png", 'wb') { |f|
+    File.open("#{Rails.root}/#{path}/#{picture.id}.png", 'wb') do |f|
       f.write Base64.decode64(params[:data].sub!('data:image/png;base64,', ''))
-    }
+    end
     if Picture.count > 10
       picture = Picture.order(:id).first
       begin
-        File.unlink()
-      rescue => ex
+        File.unlink
+      rescue => exc
         p exc
       end
       picture.destroy
     end
 
-    render :nothing => true
+    render nothing: true
   end
 
   def index
@@ -40,9 +40,9 @@ class PicturesController < ApplicationController
     @response = ids.join(',')
     respond_to do |format|
       format.html # .html.erb
-      format.xml   { render :xml => ids }
-      format.json  { render :json => ids }
-      format.text  { render :text => ids.join(',') }
+      format.xml   { render xml: ids }
+      format.json  { render json: ids }
+      format.text  { render text: ids.join(',') }
     end
   end
 
@@ -57,5 +57,4 @@ class PicturesController < ApplicationController
       format.json { head :no_content }
     end
   end
-
 end

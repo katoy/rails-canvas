@@ -1,5 +1,5 @@
+# coding: utf-8
 class MessagesController < ApplicationController
-
   # what messages needs this?
   def index
     if is_msg?
@@ -7,5 +7,4 @@ class MessagesController < ApplicationController
       clear_msg
     end
   end
-
 end

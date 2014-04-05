@@ -1,5 +1,5 @@
+# coding: utf-8
 class FaceboxController < ApplicationController
-
   skip_before_filter :authenticate_user!, only: [:fb_login, :fb_create_user]
 
 # facebox stub functions
@@ -17,5 +17,4 @@ class FaceboxController < ApplicationController
 
   def fb_reset_password
   end
-
 end

@@ -12,13 +12,13 @@
     <button id="save-button" class="btn">保存</button>
     <button id="download-button" class="btn">Download</button>
   </div>
-  
+
   <div class="panel">
     <div id="preview-pen">
       <div id="pen"></div>
     </div>
   </div>
-  
+
   <div class="panel">
     <div class="panels" style="width: 60px;">
       <%= range_field_tag "pen-width-slider", 10, min: 1, max: 80, step: 1 %>
@@ -28,7 +28,7 @@
   </div>
 
   <div class="panels">
-    <div class="panel"> 
+    <div class="panel">
       <input id="upload" name="upload" type="file" value="File Upload">
       <p>
       (デスクトップから画像を drop でも可能)
@@ -39,5 +39,4 @@
 
 <div class="clearfix"></div>
 
-<>
 <div id="pictures"></div>

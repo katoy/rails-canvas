@@ -41,6 +41,11 @@ group :development do
 
   # perormance 計測
   gem 'rack-mini-profiler'
+
+  gem 'guard-rspec'
+  gem 'spork-rails'
+  gem 'guard-spork'
+  gem 'childprocess'
 end
 
 gem "less-rails"

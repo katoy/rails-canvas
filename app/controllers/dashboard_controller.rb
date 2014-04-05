@@ -1,5 +1,5 @@
+# coding: utf-8
 class DashboardController < ApplicationController
-  
   skip_before_filter :authenticate_user!
 
   # what message needs this?
@@ -9,5 +9,4 @@ class DashboardController < ApplicationController
       clear_msg
     end
   end
-
 end

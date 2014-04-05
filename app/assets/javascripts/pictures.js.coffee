@@ -37,7 +37,7 @@ $ ->
         true
 
     showHistory: (step) -> @showHistoryAt(@historyIdx + step)
-  
+
     clear: ->
       @ctx.clearRect(0, 0, @canvas.width, @canvas.height)
       @addHistory()
@@ -98,9 +98,9 @@ $ ->
         alert "画像がありません。"
         return false
       true
-  
+
     # 適切な画像タイプならば true。対応していないタイプならばアラートを表示して false を返す
-    checkFileType: (text) ->    
+    checkFileType: (text) ->
       # ファイルタイプの確認
       if text.match(/^image\/(png|jpeg|gif)$/) is null
         alert "対応していないファイル形式です。\nファイルはPNG, JPEG, GIFに対応しています。"
@@ -112,7 +112,7 @@ $ ->
       ->
         try
           width = width || @width;
-          height = height || @height;  
+          height = height || @height;
           _mycanvas.reload(@)
           $(@).remove()
         catch e
@@ -134,7 +134,7 @@ $ ->
       reader.onload = @readFile(reader)
       reader.readAsDataURL file
 
-    ondrop: (event) ->  
+    ondrop: (event) ->
       if event.dataTransfer.files.length is 0
         alert "画像を開けませんでした。"
         return false
@@ -165,7 +165,7 @@ $ ->
           image = new Image()
           image.src = $(@).attr('src')
           image.onload = -> myCanvas.reload(image)
-  
+
         thumb_pics.mouseenter -> $(@).addClass('pict_thumbnail-over')
         thumb_pics.mouseout   -> $(@).removeClass('pict_thumbnail-over')
         null
