@@ -15,29 +15,31 @@
         <ul class="nav pull-right">
           <li>
             <p class="navbar-text">
-              <% if user_signed_in? -%>
-              <%= link_to image_tag(avatar_url(current_user), :size => "25x25"), fb_edit_user_path, :remote => true %>
-              &nbsp;
-              <%= link_to current_user.username, fb_edit_user_path, :remote => true %>&nbsp;|&nbsp; 
-              <%= link_to t(:logout, scope: :'myinfo.menu'), destroy_user_session_path, :method=>'delete' %> 
-              <% else -%>
-              <%= link_to image_tag("sign-in-with-twitter-gray-20.png"), user_omniauth_authorize_path(:twitter) %>
-              &nbsp;&nbsp;
-              <%= link_to t(:login, scope: :'myinfo.menu'), fb_login_path, :remote => true %>&nbsp;|&nbsp;
-              <%= link_to t(:sign_up, scope: :'myinfo.menu'), fb_create_user_path, :remote => true %>
-              <% end -%>
+              <% begin %>
+                <% if user_signed_in? -%>
+                  <%= link_to image_tag(avatar_url(current_user), :size => "25x25"), fb_edit_user_path, :remote => true %>
+                  &nbsp;
+                  <%= link_to current_user.username, fb_edit_user_path, :remote => true %>&nbsp;|&nbsp; 
+                  <%= link_to t(:logout, scope: :'myinfo.menu'), destroy_user_session_path, :method=>'delete' %> 
+                <% else -%>
+                  <%= link_to image_tag("sign-in-with-twitter-gray-20.png"), user_omniauth_authorize_path(:twitter) %>
+                  &nbsp;&nbsp;
+                  <%= link_to t(:login, scope: :'myinfo.menu'), fb_login_path, :remote => true %>&nbsp;|&nbsp;
+                  <%= link_to t(:sign_up, scope: :'myinfo.menu'), fb_create_user_path, :remote => true %>
+                <% end -%>
+              <% rescue %>
+              <% end %>
             </p>
           </li>
-        </ul>      
-
+        </ul>
 
         <ul class="nav">
+        <% begin %>
 	  <!-- タブ [HOME] -->
           <li class="<%= active_tab('home') %>"><%= link_to icon_and_t("icon-home", t(:home, scope: :'myinfo.menu')), dashboard_path -%></li>
 
 	  <!-- タブ [画像] -->
           <li class="<%= active_tab('pictures') %>"><%= link_to t(:pictures, scope: :'myinfo.menu'), pictures_path -%></li>
-	  
           <%- if current_user && current_user.role_access?(User.user_role) %>
 	    <!-- タブ [メッセージ] -->
             <li class="<%= active_tab('messages') %>"><%= link_to icon_and_t("icon-envelope", t(:messages, scope: :'myinfo.menu')), messages_path -%></li>
@@ -57,7 +59,6 @@
 	    <!-- タブ [アドミン] -->
             <li class="<%= active_tab('admin') %>"><%= link_to icon_and_t("icon-user", t(:admin, scope: :'myinfo.menu')), admin_path -%></li>
           <%- end %>
-	  
 	  <!-- タブ [ヘルプ] -->
           <li class="<%= active_tab('help') %>"><%= link_to icon_and_t("icon-question-sign", t(:help, scope: :'myinfo.menu')), help_path -%></li>
 
@@ -69,7 +70,8 @@
 	  </li>
 
         </ul>
-	
+        <% rescue %>
+        <% end %>
       </div>
     </div>
   </div>

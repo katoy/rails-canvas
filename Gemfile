@@ -7,7 +7,8 @@ gem 'rails', '~>3.2.14'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 # gem 'mysql2'
-gem 'sqlite3'
+# gem 'sqlite3'
+gem 'pg'
 
 # WEBrick でなく thin を使う
 gem 'thin'
@@ -26,13 +27,6 @@ group :assets do
 end
 
 group :development do
-
-  # エラー画面をわかりやすく整形してくれる
-  gem 'better_errors'
-  gem 'pry'
-  gem 'pry-rails'
-  gem 'pry-doc'
-  gem 'pry-debugger'
 
   # better_errorsの画面上にirb/pry(PERL)を表示する
   gem 'binding_of_caller'
@@ -90,7 +84,11 @@ group :test do
   gem 'rspec-rails', '>= 0', :group => :development
   # gem 'factory_girl_rails', '~> 4.2.1'
   gem 'metric_fu'
+end
 
+group :development, :test do
+  # エラー画面をわかりやすく整形してくれる
+  gem 'better_errors'
   gem 'pry'
   gem 'pry-rails'
   gem 'pry-doc'

@@ -29,4 +29,5 @@ Myinfo::Application.routes.draw do
   match 'pictures/list', :controller => 'pictures', :action => 'list'
   match 'pictures',      :controller => 'pictures', :action => 'new'
 
+  match '*not_found' => 'application#render_404'
 end

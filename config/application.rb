@@ -2,6 +2,18 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
+# See
+#  http://irohiroki.com/2011/06/15/rescue-rack-middleware-exceptions
+class DatabaseFailure < ActionController::Base
+  def self.call(env)
+    action(:respond).call(env)
+  end
+
+  def respond
+    render :template => "errors/error_500", :status => 500, :layout => 'application'
+  end
+end
+
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
   Bundler.require(*Rails.groups(:assets => %w(development test)))
@@ -58,5 +70,11 @@ module Myinfo
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # See
+    #  http://irohiroki.com/2011/06/15/rescue-rack-middleware-exceptions
+    config.middleware.insert_before ActiveRecord::ConnectionAdapters::ConnectionManagement, ActionDispatch::Rescue do
+      rescue_from PG::Error, DatabaseFailure
+    end
   end
 end
