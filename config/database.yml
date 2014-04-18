@@ -43,23 +43,28 @@
 #  socket: /var/lib/mysql/mysql.sock
 
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
+  adapter: postgresql
+  encoding: utf8
+  database: canvas_development
   pool: 5
-  timeout: 5000
+  username: katoy
+  password: katoy
 
-test: &test
-  adapter: sqlite3
-  database: db/test.sqlite3
+test:
+  adapter: postgresql
+  encoding: utf8
+  database: canvas_test
   pool: 5
-  timeout: 5000
+  username: katoy
+  password: katoy
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: postgresql
+  encoding: utf8
+  database: canvas_production
   pool: 5
-  timeout: 5000
+  username: katoy
+  password: katoy
 
-
-cucumber:
-  <<: *test
+# cucumber:
+#  <<: *test
