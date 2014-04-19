@@ -19,8 +19,8 @@
                 <% if user_signed_in? -%>
                   <%= link_to image_tag(avatar_url(current_user), :size => "25x25"), fb_edit_user_path, :remote => true %>
                   &nbsp;
-                  <%= link_to current_user.username, fb_edit_user_path, :remote => true %>&nbsp;|&nbsp; 
-                  <%= link_to t(:logout, scope: :'myinfo.menu'), destroy_user_session_path, :method=>'delete' %> 
+                  <%= link_to current_user.username, fb_edit_user_path, :remote => true %>&nbsp;|&nbsp;
+                  <%= link_to t(:logout, scope: :'myinfo.menu'), destroy_user_session_path, :method=>'delete' %>
                 <% else -%>
                   <%= link_to image_tag("sign-in-with-twitter-gray-20.png"), user_omniauth_authorize_path(:twitter) %>
                   &nbsp;&nbsp;
@@ -34,7 +34,7 @@
         </ul>
 
         <ul class="nav">
-        <% begin %>
+          <% if respond_to?(:active_tab) %>
 	  <!-- タブ [HOME] -->
           <li class="<%= active_tab('home') %>"><%= link_to icon_and_t("icon-home", t(:home, scope: :'myinfo.menu')), dashboard_path -%></li>
 
@@ -68,10 +68,8 @@
 	      <div class="icon-search"></div>
 	    </form>
 	  </li>
-
+          <% end %>
         </ul>
-        <% rescue %>
-        <% end %>
       </div>
     </div>
   </div>

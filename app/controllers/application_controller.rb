@@ -10,10 +10,12 @@ class ApplicationController < ActionController::Base
   # Railsの404/500エラーページ、簡単作成手順
 
   # 例外ハンドル
-  rescue_from ::ActiveRecord::RecordNotFound, :with => :render_404
-  rescue_from ::AbstractController::ActionNotFound, :with => :render_404
-  rescue_from ::ActionController::RoutingError, :with => :render_404
-  rescue_from Exception, :with => :render_500
+  if Rails.env.production?
+    rescue_from ::ActiveRecord::RecordNotFound, :with => :render_404
+    rescue_from ::AbstractController::ActionNotFound, :with => :render_404
+    rescue_from ::ActionController::RoutingError, :with => :render_404
+    rescue_from Exception, :with => :render_500
+  end
 
   def render_404(exception = nil)
     if exception

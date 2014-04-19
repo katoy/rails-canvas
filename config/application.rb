@@ -10,13 +10,13 @@ class DatabaseFailure < ActionController::Base
   end
 
   def respond
-    render :template => "errors/error_500", :status => 500, :layout => 'application'
+    render template: "errors/error_500", status: 500, layout: 'application', locals: { exception: env['action_dispatch.rescue.exception'] }
   end
 end
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
-  Bundler.require(*Rails.groups(:assets => %w(development test)))
+  Bundler.require(*Rails.groups(assets:  %w(development test)))
   # If you want your assets lazily compiled in production, use this line
   # Bundler.require(:default, :assets, Rails.env)
 end
@@ -74,7 +74,7 @@ module Myinfo
     # See
     #  http://irohiroki.com/2011/06/15/rescue-rack-middleware-exceptions
     config.middleware.insert_before ActiveRecord::ConnectionAdapters::ConnectionManagement, ActionDispatch::Rescue do
-      rescue_from PG::Error, DatabaseFailure
+      rescue_from PG::ConnectionBad, DatabaseFailure
     end
   end
 end
