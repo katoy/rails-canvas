@@ -3,6 +3,7 @@
 [![Dependency Status](https://gemnasium.com/katoy/rails-canvas.png)](https://gemnasium.com/katoy/rails-canvas)
 [![Coverage Status](https://coveralls.io/repos/katoy/rails-canvas/badge.png)](https://coveralls.io/r/katoy/rails-canvas)
 
+## Rails3 + HTML5 canvas
 * [http://kray.jp/blog/rails3-html5-canvas/](http://kray.jp/blog/rails3-html5-canvas/) rails3 + html5 canvasでお絵かき投稿サイトを作ろう！ (2011年11月14日)
  をなぞって作成してみた。  
 
@@ -13,7 +14,7 @@
     ...  
       =* ruby-1.9.3-p429 [ i386 ]  
     ...  
-    $ rfm gemset list  
+    $ rvm gemset list  
     ...  
        => rails32  
     ...  
@@ -51,7 +52,7 @@
 
 - app/view/pictures/new.html.erb
 
-* 実装済みの機能
+### 実装済みの機能
 - 描画  
 - 色、太さの変更
 - undo/redo (現状では回数制限は無し[エラー処理も無し])  
@@ -61,14 +62,20 @@
 - rake spec で いくつかの画面をキャプチャする。(認証が必要な画面も)
 [phantomjs](http://phantomjs.org/download.html) をインストールして、 コマンドラインで実行出来るようしておく事が必要です。
 
-* TODO
+### TODO
 - アルファ値も扱えるようにする
 - ページ上の各種リンクの実装
 - rspec でのテスト  
 - heroku へ deploy  
 
-* その他
-- http://www.tamurasouko.com/?p=929  Rails – Deviseのコントローラをカスタマイズする方法
-- http://bgrins.github.io/spectrum/  alpha 値も扱える color picker
+### その他
+- [http://www.tamurasouko.com/?p=929](http://www.tamurasouko.com/?p=929)  Rails – Deviseのコントローラをカスタマイズする方法
 
+- [http://bgrins.github.io/spectrum/](ttp://bgrins.github.io/spectrum/)  alpha 値も扱える color picker
 
+- [http://qiita.com/katoy/items/58c6570dcebab1a0b048](ttp://qiita.com/katoy/items/58c6570dcebab1a0b048) Devise認証のカスタマイズ (Strategies)
+  device の認証判定ロジックをカスタマイズをためしてみている。
+
+- [http://qiita.com/katoy/items/c51dceb19bc18471f661](http://qiita.com/katoy/items/c51dceb19bc18471f661) Rails で PG::ConnectBad エラーを捕捉して画面表示する
+status 500 の画面をサイト共通のレイアウトにしたがったものにしている。
+( publick/h500.html を表示させずに、 template で render させる )
