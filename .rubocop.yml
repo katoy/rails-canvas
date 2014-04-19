@@ -17,6 +17,3 @@ Documentation:
 LineLength:
   Max: 120
 
-StringLiterals:
-  Enabled: false
-

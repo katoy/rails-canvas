@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
@@ -10,7 +11,7 @@ class DatabaseFailure < ActionController::Base
   end
 
   def respond
-    render template: "errors/error_500", status: 500, layout: 'application', locals: { exception: env['action_dispatch.rescue.exception'] }
+    render template: 'errors/error_500', status: 500, layout: 'application', locals: { exception: env['action_dispatch.rescue.exception'] }
   end
 end
 
@@ -49,7 +50,7 @@ module Myinfo
     I18n.enforce_available_locales = true
 
     # Configure the default encoding used in templates for Ruby 1.9.
-    config.encoding = "utf-8"
+    config.encoding = 'utf-8'
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password, :password_confirmation]
