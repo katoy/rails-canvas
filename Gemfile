@@ -64,7 +64,7 @@ gem 'capistrano'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 # for debug, run $ rails s --debugger
-gem 'debugger'
+# gem 'debugger'
 
 group :test do
   gem 'simplecov', :require => false
@@ -92,7 +92,8 @@ group :development, :test do
   gem 'pry'
   gem 'pry-rails'
   gem 'pry-doc'
-  gem 'pry-debugger'
+  # gem 'pry-debugger'
+  gem 'pry-byebug'
 end
 
 gem 'devise'

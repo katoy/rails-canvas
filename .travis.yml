@@ -1,7 +1,6 @@
 language: ruby
 rvm:
-  - 1.9.3
-  - 2.1.1
+  - 2.1.3
 env:
   - DB=pgsql
 bundler_args: "--without development"
