@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 source 'https://rubygems.org'
 
-gem 'rails', '~>3.2.14'
+#gem 'rails', '~>3.2.14'
+gem 'rails'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -27,7 +28,7 @@ group :assets do
 end
 
 group :development do
-
+  gem 'spring'
   # better_errorsの画面上にirb/pry(PERL)を表示する
   gem 'binding_of_caller'
 
